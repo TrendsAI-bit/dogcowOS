@@ -36,8 +36,9 @@ function App() {
   }
 
   if (isLoading) {
-    return (
-      <div className="h-screen w-screen flex flex-col items-center justify-center bg-black relative overflow-hidden">
+    try {
+      return (
+        <div className="h-screen w-screen flex flex-col items-center justify-center bg-black relative overflow-hidden">
         {/* Apple-style background */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-black"></div>
         
@@ -167,7 +168,19 @@ function App() {
           <p>DogCow OS • Powered by Clarus</p>
         </motion.div>
       </div>
-    )
+      )
+    } catch (error) {
+      console.error('Loading screen error:', error)
+      return (
+        <div className="h-screen w-screen flex items-center justify-center bg-black text-white">
+          <div className="text-center">
+            <div className="text-4xl mb-4">🐕🐄</div>
+            <h1 className="text-2xl mb-4">Loading DogCow OS...</h1>
+            <p className="text-sm opacity-70">If this takes too long, please refresh the page</p>
+          </div>
+        </div>
+      )
+    }
   }
 
   return (
@@ -177,25 +190,29 @@ function App() {
     >
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-white opacity-10 rounded-full"
-            animate={{
-              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
-            }}
-            transition={{
-              duration: Math.random() * 30 + 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            style={{
-              left: Math.random() * window.innerWidth,
-              top: Math.random() * window.innerHeight,
-            }}
-          />
-        ))}
+        {[...Array(15)].map((_, i) => {
+          const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1920
+          const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 1080
+          return (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white opacity-10 rounded-full"
+              animate={{
+                x: [Math.random() * screenWidth, Math.random() * screenWidth],
+                y: [Math.random() * screenHeight, Math.random() * screenHeight],
+              }}
+              transition={{
+                duration: Math.random() * 30 + 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              style={{
+                left: Math.random() * screenWidth,
+                top: Math.random() * screenHeight,
+              }}
+            />
+          )
+        })}
       </div>
 
       {/* Menu Bar */}

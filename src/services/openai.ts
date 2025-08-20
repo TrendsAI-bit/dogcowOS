@@ -16,10 +16,18 @@ const getApiKey = () => {
   return undefined
 }
 
-const openai = new OpenAI({
-  apiKey: getApiKey(),
-  dangerouslyAllowBrowser: true
-})
+// Initialize OpenAI client only when needed to avoid SSR issues
+let openai: OpenAI | null = null
+
+const getOpenAIClient = () => {
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: getApiKey(),
+      dangerouslyAllowBrowser: true
+    })
+  }
+  return openai
+}
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system'
@@ -42,7 +50,8 @@ export const sendChatMessage = async (messages: ChatMessage[]): Promise<string> 
   }
 
   try {
-    const response = await openai.chat.completions.create({
+    const client = getOpenAIClient()
+    const response = await client.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         {
@@ -62,4 +71,4 @@ export const sendChatMessage = async (messages: ChatMessage[]): Promise<string> 
   }
 }
 
-export default openai
+export default getOpenAIClient

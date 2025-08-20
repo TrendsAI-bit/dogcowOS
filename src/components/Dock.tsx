@@ -100,7 +100,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
                   }}
                 >
                   {item.special ? (
-                    <DogCow3DImproved mood="happy" size="small" autoRotate={false} />
+                    <DogCowLogo mood="happy" size="small" />
                   ) : (
                     item.icon && <item.icon size={28} className={item.color} />
                   )}
@@ -182,7 +182,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
           onClick={onDogCowClick}
         >
           <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors shadow-lg">
-            <DogCow3DImproved mood="happy" size="small" autoRotate={true} />
+            <DogCowLogo mood="happy" size="medium" />
           </div>
           <span className="text-white text-xs text-center font-medium drop-shadow-sm">Clarus</span>
         </motion.div>

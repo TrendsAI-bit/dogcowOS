@@ -20,7 +20,7 @@ function App() {
     // Simulate loading time to ensure everything is ready
     const loadingTimer = setTimeout(() => {
       setIsLoading(false)
-    }, 1500)
+    }, 800)
     
     return () => {
       clearInterval(timer)

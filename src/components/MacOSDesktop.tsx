@@ -38,7 +38,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
                 }}
               >
                 <div className="w-48 h-48 cursor-pointer flex items-center justify-center" onClick={() => setIsDogCowActive(true)}>
-                  <DogCow3DImproved mood="happy" size="large" onClick={() => setIsDogCowActive(true)} autoRotate={true} />
+                  <DogCowLogo mood="happy" size="large" onClick={() => setIsDogCowActive(true)} />
                 </div>
               </motion.div>
               
@@ -111,11 +111,10 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
               }}
             >
               <div className="w-32 h-32 cursor-pointer flex items-center justify-center">
-                <DogCow3DImproved 
+                <DogCowLogo 
                   mood="happy" 
-                  size="medium" 
+                  size="large" 
                   onClick={() => setIsDogCowActive(true)}
-                  autoRotate={true}
                 />
               </div>
             </motion.div>

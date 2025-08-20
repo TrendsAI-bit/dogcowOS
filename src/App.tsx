@@ -37,17 +37,97 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-700">
-        <div className="text-center text-white">
+      <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-700 relative overflow-hidden">
+        {/* Animated background particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-white opacity-20 rounded-full"
+              animate={{
+                x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
+                y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+              }}
+              transition={{
+                duration: Math.random() * 15 + 10,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              style={{
+                left: Math.random() * window.innerWidth,
+                top: Math.random() * window.innerHeight,
+              }}
+            />
+          ))}
+        </div>
+        
+        <div className="text-center text-white z-10">
+          {/* Logo Animation */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="text-8xl mb-4"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ 
+              scale: [0, 1.2, 1],
+              opacity: 1,
+              y: [0, -10, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="mb-6"
           >
-            🐕🐄
+            <img 
+              src="/Logo.png" 
+              alt="Clarus the DogCow" 
+              className="w-32 h-32 mx-auto drop-shadow-2xl"
+              style={{
+                filter: 'drop-shadow(0 0 30px rgba(255, 107, 53, 0.6))'
+              }}
+            />
           </motion.div>
-          <h1 className="text-4xl font-bold mb-2">DogCow OS</h1>
-          <p className="text-xl opacity-80">Loading Clarus...</p>
+          
+          {/* Text Animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+          >
+            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+              DogCow OS
+            </h1>
+            <motion.p 
+              className="text-xl opacity-80 mb-4"
+              animate={{ opacity: [0.6, 1, 0.6] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Booting up Clarus...
+            </motion.p>
+          </motion.div>
+          
+          {/* Loading Bar */}
+          <motion.div
+            className="w-64 h-2 bg-white/20 rounded-full mx-auto overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            <motion.div
+              className="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+            />
+          </motion.div>
+          
+          <motion.p 
+            className="text-sm opacity-60 mt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+          >
+            Initializing AI companion...
+          </motion.p>
         </div>
       </div>
     )

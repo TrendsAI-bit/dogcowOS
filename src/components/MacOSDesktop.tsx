@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import DogCowAvatar from './DogCowAvatar'
 import DogCowLogo from './DogCowLogo'
 import DogCow3D from './DogCow3D'
+import DogCow3DImproved from './DogCow3DImproved'
 
 interface MacOSDesktopProps {
   isDogCowActive: boolean
@@ -37,7 +38,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
                 }}
               >
                 <div className="w-48 h-48 cursor-pointer flex items-center justify-center" onClick={() => setIsDogCowActive(true)}>
-                  <DogCowLogo mood="happy" size="large" onClick={() => setIsDogCowActive(true)} />
+                  <DogCow3DImproved mood="happy" size="large" onClick={() => setIsDogCowActive(true)} autoRotate={true} />
                 </div>
               </motion.div>
               
@@ -110,10 +111,11 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
               }}
             >
               <div className="w-32 h-32 cursor-pointer flex items-center justify-center">
-                <DogCowLogo 
+                <DogCow3DImproved 
                   mood="happy" 
-                  size="large" 
+                  size="medium" 
                   onClick={() => setIsDogCowActive(true)}
+                  autoRotate={true}
                 />
               </div>
             </motion.div>

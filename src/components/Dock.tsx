@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import DogCowAvatar from './DogCowAvatar'
 import DogCowLogo from './DogCowLogo'
+import DogCow3DImproved from './DogCow3DImproved'
 
 interface DockProps {
   onDogCowClick: () => void
@@ -99,7 +100,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
                   }}
                 >
                   {item.special ? (
-                    <DogCowLogo mood="happy" size="small" />
+                    <DogCow3DImproved mood="happy" size="small" autoRotate={false} />
                   ) : (
                     item.icon && <item.icon size={28} className={item.color} />
                   )}
@@ -181,7 +182,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
           onClick={onDogCowClick}
         >
           <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors shadow-lg">
-            <DogCowLogo mood="happy" size="medium" />
+            <DogCow3DImproved mood="happy" size="small" autoRotate={true} />
           </div>
           <span className="text-white text-xs text-center font-medium drop-shadow-sm">Clarus</span>
         </motion.div>

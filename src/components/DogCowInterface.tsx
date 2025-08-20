@@ -4,6 +4,7 @@ import { X, MessageCircle, Gamepad2, Settings, Volume2, VolumeX } from 'lucide-r
 import DogCowAvatar from './DogCowAvatar'
 import DogCowLogo from './DogCowLogo'
 import DogCow3D from './DogCow3D'
+import DogCow3DImproved from './DogCow3DImproved'
 import ChatInterface from './ChatInterface'
 import GameInterface from './GameInterface'
 
@@ -116,7 +117,7 @@ const DogCowInterface: React.FC<DogCowInterfaceProps> = ({ onClose }) => {
           {/* Left Panel - DogCow Avatar */}
           <div className="w-1/3 bg-gradient-to-b from-orange-500/20 to-orange-600/20 p-6 flex flex-col items-center justify-center">
             <div className="mb-4">
-              <DogCowLogo mood={dogCowMood} size="large" onClick={() => playMoofSound()} />
+              <DogCow3DImproved mood={dogCowMood} size="large" onClick={() => playMoofSound()} />
             </div>
             <div className="mt-4 text-center">
               <h3 className="text-white text-xl font-bold">Clarus</h3>

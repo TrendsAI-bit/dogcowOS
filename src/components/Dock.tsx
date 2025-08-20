@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  Finder, 
+  Folder, 
   MessageCircle, 
   Camera, 
   Music, 
@@ -24,7 +24,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
   const [showTrash, setShowTrash] = useState(false)
 
   const dockItems = [
-    { id: 'finder', icon: Finder, label: 'Finder', color: 'text-blue-400' },
+    { id: 'finder', icon: Folder, label: 'Finder', color: 'text-blue-400' },
     { id: 'dogcow', icon: null, label: 'Clarus the DogCow', color: 'text-orange-400', special: true },
     { id: 'messages', icon: MessageCircle, label: 'Messages', color: 'text-green-400' },
     { id: 'camera', icon: Camera, label: 'Camera', color: 'text-gray-400' },
@@ -185,7 +185,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
           whileHover={{ scale: 1.05 }}
         >
           <div className="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-            <Finder size={32} className="text-blue-400" />
+            <Folder size={32} className="text-blue-400" />
           </div>
           <span className="text-white text-xs text-center font-medium">Finder</span>
         </motion.div>

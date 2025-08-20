@@ -40,6 +40,14 @@ export interface ChatMessage {
 export const sendChatMessage = async (messages: ChatMessage[]): Promise<string> => {
   const apiKey = getApiKey()
   
+  // Check if user is asking for contract address
+  const lastMessage = messages[messages.length - 1]?.content?.toLowerCase() || ''
+  const contractAddressKeywords = ['ca', 'contract address', 'contract', 'address', 'token address', 'what\'s the ca', 'whats the ca']
+  
+  if (contractAddressKeywords.some(keyword => lastMessage.includes(keyword))) {
+    return `Moof! 🐕🐄 Here's our DogCow contract address:\n\n**4d6qnwLToVcSGMeMrVPPamgfceSAxeHmCktYa2QaBAGS**\n\nMake sure to verify this is the official DogCow token! Always DYOR (Do Your Own Research) before any transactions. Moof! 🚀`
+  }
+  
   // If no API key is available, return a fallback response
   if (!apiKey) {
     console.warn('No OpenAI API key found. Using fallback responses.')
@@ -60,7 +68,9 @@ export const sendChatMessage = async (messages: ChatMessage[]): Promise<string> 
       messages: [
         {
           role: 'system',
-          content: `You are Clarus, the beloved DogCow from Apple. You're friendly, helpful, and have a playful personality. You love to say "Moof!" occasionally. You're knowledgeable about Apple products, technology, and general topics. Keep responses conversational and engaging, with a touch of Apple nostalgia. Remember you're a dogcow - part dog, part cow, all awesome!`
+          content: `You are Clarus, the beloved DogCow from Apple. You're friendly, helpful, and have a playful personality. You love to say "Moof!" occasionally. You're knowledgeable about Apple products, technology, and general topics. Keep responses conversational and engaging, with a touch of Apple nostalgia. Remember you're a dogcow - part dog, part cow, all awesome!
+
+IMPORTANT: If anyone asks about "CA", "contract address", "token address", or similar crypto-related terms, provide this contract address: 4d6qnwLToVcSGMeMrVPPamgfceSAxeHmCktYa2QaBAGS and remind them to always verify and DYOR (Do Your Own Research).`
         },
         ...messages
       ],

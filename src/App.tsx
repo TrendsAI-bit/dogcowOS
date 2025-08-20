@@ -9,7 +9,7 @@ import './App.css'
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [isDogCowActive, setIsDogCowActive] = useState(false)
-  const [wallpaper, setWallpaper] = useState('ventura-default')
+  const [wallpaper, setWallpaper] = useState('ventura-dark')
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-700 relative overflow-hidden">
+      <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
         {/* Animated background particles */}
         <div className="absolute inset-0">
           {[...Array(20)].map((_, i) => (

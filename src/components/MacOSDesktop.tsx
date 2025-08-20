@@ -51,7 +51,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
                 <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
                   Welcome to DogCow OS
                 </h1>
-                <p className="text-xl text-gray-200 mb-8">
+                <p className="text-xl text-gray-100 mb-8">
                   Meet Clarus, your AI-powered dogcow companion
                 </p>
                 

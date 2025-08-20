@@ -14,6 +14,7 @@ import {
 import DogCowAvatar from './DogCowAvatar'
 import DogCowLogo from './DogCowLogo'
 import DogCow3DImproved from './DogCow3DImproved'
+import './CenteredDock.css'
 
 interface DockProps {
   onDogCowClick: () => void
@@ -68,11 +69,11 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
       <motion.div
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-30"
-        style={{ left: '50%', transform: 'translateX(-50%)' }}
+        className="dock-container"
       >
-        <div className="bg-white/8 backdrop-blur-3xl rounded-2xl border border-white/15 shadow-2xl px-8 py-5" style={{ background: 'rgba(255, 255, 255, 0.08)' }}>
-          <div className="flex items-center justify-center space-x-4">
+        <div className="dock-content bg-white/8 backdrop-blur-3xl rounded-2xl border border-white/15 shadow-2xl px-8 py-5" 
+             style={{ background: 'rgba(255, 255, 255, 0.08)' }}>
+          <div className="dock-items">
             {dockItems.map((item) => (
               <motion.div
                 key={item.id}

@@ -7,6 +7,7 @@ import DogCow3D from './DogCow3D'
 import DogCow3DImproved from './DogCow3DImproved'
 import ChatInterface from './ChatInterface'
 import GameInterface from './GameInterface'
+import { sendChatMessage, ChatMessage } from '../services/openai'
 
 interface DogCowInterfaceProps {
   onClose: () => void
@@ -56,30 +57,52 @@ const DogCowInterface: React.FC<DogCowInterfaceProps> = ({ onClose }) => {
     
     setMessages(prev => [...prev, userMessage])
     setDogCowMood('thinking')
+    playMoofSound()
     
-    // Simulate AI response
-    setTimeout(() => {
-      const responses = [
-        "Moof! That's interesting! Let me think about that...",
-        "Woof! I love talking with you! What else would you like to know?",
-        "Moof moof! As a dogcow, I have unique perspectives on both barking and mooing!",
-        "That's fascinating! Did you know I was created by Susan Kare in 1987?",
-        "Moof! I'm here to help make your Mac experience more fun and interactive!",
-        "Woof woof! Want to play a game? I know some fun ones!",
-        "Moof! I can help you with Mac tips, play games, or just chat!"
-      ]
+    try {
+      // Convert messages to ChatMessage format
+      const chatMessages: ChatMessage[] = messages.map(msg => ({
+        role: msg.sender === 'user' ? 'user' : 'assistant',
+        content: msg.text
+      }))
       
-      const response = {
-        id: Date.now().toString(),
-        text: responses[Math.floor(Math.random() * responses.length)],
+      // Add the new user message
+      chatMessages.push({
+        role: 'user',
+        content: message
+      })
+      
+      // Get AI response
+      const aiResponse = await sendChatMessage(chatMessages)
+      
+      const dogCowMessage = {
+        id: (Date.now() + 1).toString(),
+        text: aiResponse,
         sender: 'dogcow' as const,
         timestamp: new Date()
       }
       
-      setMessages(prev => [...prev, response])
+      setMessages(prev => [...prev, dogCowMessage])
       setDogCowMood('happy')
       playMoofSound()
-    }, 1000 + Math.random() * 2000)
+      
+    } catch (error) {
+      console.error('Error sending message:', error)
+      
+      // Fallback response if API fails
+      const fallbackResponse = "Moof! I'm having trouble connecting to my brain right now. But I'm still here to chat! Try asking me something else!"
+      
+      const dogCowMessage = {
+        id: (Date.now() + 1).toString(),
+        text: fallbackResponse,
+        sender: 'dogcow' as const,
+        timestamp: new Date()
+      }
+      
+      setMessages(prev => [...prev, dogCowMessage])
+      setDogCowMood('happy')
+      playMoofSound()
+    }
   }
 
   return (

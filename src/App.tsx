@@ -20,7 +20,7 @@ function App() {
     // Simulate loading time to ensure everything is ready
     const loadingTimer = setTimeout(() => {
       setIsLoading(false)
-    }, 800)
+    }, 4000)
     
     return () => {
       clearInterval(timer)
@@ -74,10 +74,10 @@ function App() {
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
                 transition={{ 
-                  duration: 2.5, 
+                  duration: 3.5, 
                   ease: "easeInOut",
-                  times: [0, 0.3, 0.7, 1],
-                  values: ["0%", "30%", "70%", "100%"]
+                  times: [0, 0.2, 0.4, 0.7, 1],
+                  values: ["0%", "15%", "45%", "85%", "100%"]
                 }}
               />
             </div>
@@ -128,14 +128,14 @@ function App() {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 0.7] }}
-                transition={{ delay: 1.5, duration: 0.5 }}
+                transition={{ delay: 1, duration: 0.5 }}
               >
                 Initializing Clarus AI...
               </motion.p>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 0.7] }}
-                transition={{ delay: 2, duration: 0.5 }}
+                transition={{ delay: 1.8, duration: 0.5 }}
               >
                 Loading system resources...
               </motion.p>
@@ -143,6 +143,13 @@ function App() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1, 0.7] }}
                 transition={{ delay: 2.5, duration: 0.5 }}
+              >
+                Connecting to OpenAI API...
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0.7] }}
+                transition={{ delay: 3.2, duration: 0.5 }}
               >
                 Preparing desktop environment...
               </motion.p>

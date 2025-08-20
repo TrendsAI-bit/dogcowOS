@@ -23,7 +23,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -50 }}
             className="absolute inset-0 flex items-center justify-center z-10"
-            style={{ paddingBottom: '4rem' }}
+            style={{ paddingBottom: '6rem' }}
           >
             <div className="text-center text-white">
               <motion.div
@@ -38,7 +38,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
                   ease: "easeInOut"
                 }}
               >
-                <div className="w-48 h-48 cursor-pointer flex items-center justify-center" onClick={() => setIsDogCowActive(true)}>
+                <div className="w-64 h-64 cursor-pointer flex items-center justify-center" onClick={() => setIsDogCowActive(true)}>
                   <DogCowLogo mood="happy" size="large" onClick={() => setIsDogCowActive(true)} />
                 </div>
               </motion.div>

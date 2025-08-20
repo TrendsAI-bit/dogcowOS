@@ -68,10 +68,11 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
       <motion.div
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30"
+        className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-30"
+        style={{ left: '50%', transform: 'translateX(-50%)' }}
       >
-        <div className="bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 shadow-2xl px-6 py-4" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-          <div className="flex items-center justify-center space-x-3">
+        <div className="bg-white/8 backdrop-blur-3xl rounded-2xl border border-white/15 shadow-2xl px-8 py-5" style={{ background: 'rgba(255, 255, 255, 0.08)' }}>
+          <div className="flex items-center justify-center space-x-4">
             {dockItems.map((item) => (
               <motion.div
                 key={item.id}
@@ -86,12 +87,12 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
               >
                 <motion.button
                   onClick={() => handleItemClick(item.id)}
-                  className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all relative overflow-hidden shadow-lg ${
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all relative overflow-hidden shadow-lg ${
                     item.special 
                       ? 'bg-gradient-to-br from-orange-400/80 to-orange-600/80 backdrop-blur-sm' 
                       : 'bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/20'
                   }`}
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileHover={{ scale: 1.08, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                   style={{
                     background: item.special 
@@ -102,7 +103,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
                   {item.special ? (
                     <DogCowLogo mood="happy" size="small" />
                   ) : (
-                    item.icon && <item.icon size={28} className={item.color} />
+                    item.icon && <item.icon size={32} className={item.color} />
                   )}
                   
                   {/* Running indicator */}
@@ -129,7 +130,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
             ))}
 
             {/* Separator */}
-            <div className="w-px h-12 bg-white/30 mx-3"></div>
+            <div className="w-px h-14 bg-white/30 mx-4"></div>
 
             {/* Trash */}
             <motion.div
@@ -149,11 +150,11 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
               <motion.button
-                className="w-14 h-14 rounded-2xl bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all shadow-lg"
-                whileHover={{ scale: 1.05, y: -2 }}
+                className="w-16 h-16 rounded-2xl bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all shadow-lg"
+                whileHover={{ scale: 1.08, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Trash2 size={28} className="text-gray-300" />
+                <Trash2 size={30} className="text-gray-300" />
               </motion.button>
 
               <AnimatePresence>

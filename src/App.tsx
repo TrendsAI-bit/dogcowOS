@@ -10,12 +10,22 @@ function App() {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [isDogCowActive, setIsDogCowActive] = useState(false)
   const [wallpaper, setWallpaper] = useState('ventura-default')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
-    return () => clearInterval(timer)
+    
+    // Simulate loading time to ensure everything is ready
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false)
+    }, 1500)
+    
+    return () => {
+      clearInterval(timer)
+      clearTimeout(loadingTimer)
+    }
   }, [])
 
   const wallpapers = {
@@ -23,6 +33,24 @@ function App() {
     'ventura-dark': 'linear-gradient(135deg, #232526 0%, #414345 100%)',
     'ventura-light': 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)',
     'dogcow-theme': 'linear-gradient(135deg, #ff6b35 0%, #f7931e 100%)'
+  }
+
+  if (isLoading) {
+    return (
+      <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-purple-700">
+        <div className="text-center text-white">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="text-8xl mb-4"
+          >
+            🐕🐄
+          </motion.div>
+          <h1 className="text-4xl font-bold mb-2">DogCow OS</h1>
+          <p className="text-xl opacity-80">Loading Clarus...</p>
+        </div>
+      </div>
+    )
   }
 
   return (

@@ -14,7 +14,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(true)
 
   return (
-    <div className="flex-1 relative overflow-hidden pt-8 pb-24">
+    <div className="flex-1 relative overflow-hidden pt-8 pb-28">
       {/* Welcome Message */}
       <AnimatePresence>
         {showWelcomeMessage && !isDogCowActive && (
@@ -23,6 +23,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: -50 }}
             className="absolute inset-0 flex items-center justify-center z-10"
+            style={{ paddingBottom: '4rem' }}
           >
             <div className="text-center text-white">
               <motion.div
@@ -121,7 +122,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
 
             {/* Desktop Text */}
             <motion.div
-              className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center text-white"
+              className="absolute bottom-40 left-1/2 transform -translate-x-1/2 text-center text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}

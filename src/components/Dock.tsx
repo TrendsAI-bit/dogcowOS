@@ -68,10 +68,10 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
       <motion.div
         initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30"
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30"
       >
-        <div className="bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 shadow-2xl px-4 py-3" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
-          <div className="flex items-end justify-center space-x-2">
+        <div className="bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 shadow-2xl px-6 py-4" style={{ background: 'rgba(255, 255, 255, 0.05)' }}>
+          <div className="flex items-center justify-center space-x-3">
             {dockItems.map((item) => (
               <motion.div
                 key={item.id}
@@ -80,7 +80,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
                 onMouseLeave={() => setHoveredItem(null)}
                 animate={{ 
                   scale: getItemScale(item.id),
-                  y: hoveredItem === item.id ? -8 : 0
+                  y: hoveredItem === item.id ? -12 : 0
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
@@ -129,7 +129,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
             ))}
 
             {/* Separator */}
-            <div className="w-px h-10 bg-white/30 mx-2 self-center"></div>
+            <div className="w-px h-12 bg-white/30 mx-3"></div>
 
             {/* Trash */}
             <motion.div
@@ -144,7 +144,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
               }}
               animate={{ 
                 scale: hoveredItem === 'trash' ? 1.4 : 1,
-                y: hoveredItem === 'trash' ? -8 : 0
+                y: hoveredItem === 'trash' ? -12 : 0
               }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
             >
@@ -175,7 +175,7 @@ const Dock: React.FC<DockProps> = ({ onDogCowClick, wallpaper, setWallpaper }) =
       </motion.div>
 
       {/* Desktop Icons */}
-      <div className="fixed top-8 right-4 space-y-4 z-20">
+      <div className="fixed top-16 right-8 space-y-6 z-20">
         <motion.div
           className="flex flex-col items-center space-y-2 cursor-pointer group"
           whileHover={{ scale: 1.05 }}

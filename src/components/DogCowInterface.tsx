@@ -87,44 +87,51 @@ const DogCowInterface: React.FC<DogCowInterfaceProps> = ({ onClose }) => {
       initial={{ opacity: 0, scale: 0.8, y: 50 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.8, y: 50 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-6"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
     >
       <motion.div
-        className="bg-gray-900/90 backdrop-blur-2xl rounded-2xl border border-gray-700 shadow-2xl w-full max-w-4xl h-5/6 flex flex-col overflow-hidden"
+        className="bg-gray-900/95 backdrop-blur-3xl rounded-3xl border border-gray-600 shadow-2xl w-full max-w-5xl h-5/6 flex flex-col overflow-hidden"
         layoutId="dogcow-window"
+        style={{ 
+          background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95))',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+        }}
       >
         {/* Title Bar */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-between p-5 border-b border-gray-600">
+          <div className="flex items-center space-x-4">
             <div className="flex space-x-2">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-400 transition-colors cursor-pointer"></div>
+              <div className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-400 transition-colors cursor-pointer"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-400 transition-colors cursor-pointer"></div>
             </div>
-            <h2 className="text-white font-semibold text-lg">Clarus the DogCow</h2>
+            <h2 className="text-white font-semibold text-xl">Clarus the DogCow</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-white transition-colors p-1"
+            className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-700 rounded-lg"
           >
-            <X size={20} />
+            <X size={22} />
           </button>
         </div>
 
         {/* Main Content */}
         <div className="flex flex-1 overflow-hidden">
           {/* Left Panel - DogCow Avatar */}
-          <div className="w-1/3 bg-gradient-to-b from-orange-500/20 to-orange-600/20 p-6 flex flex-col items-center justify-center">
-            <div className="mb-4">
-              <DogCowLogo mood={dogCowMood} size="large" onClick={() => playMoofSound()} />
-            </div>
-            <div className="mt-4 text-center">
-              <h3 className="text-white text-xl font-bold">Clarus</h3>
-              <p className="text-gray-300 text-sm mt-1">Your AI DogCow Companion</p>
-              <div className="mt-3 flex items-center justify-center space-x-2">
-                <div className={`w-2 h-2 rounded-full ${dogCowMood === 'happy' ? 'bg-green-400' : dogCowMood === 'thinking' ? 'bg-yellow-400' : 'bg-blue-400'}`}></div>
-                <span className="text-xs text-gray-400 capitalize">{dogCowMood}</span>
+          <div className="w-1/3 bg-gradient-to-b from-orange-500/25 to-orange-600/25 p-8 flex flex-col items-center justify-center relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/10 to-transparent"></div>
+            <div className="relative z-10">
+              <div className="mb-6">
+                <DogCowLogo mood={dogCowMood} size="large" onClick={() => playMoofSound()} />
+              </div>
+              <div className="text-center">
+                <h3 className="text-white text-2xl font-bold mb-2">Clarus</h3>
+                <p className="text-gray-300 text-base mb-4">Your AI DogCow Companion</p>
+                <div className="flex items-center justify-center space-x-3 bg-black/20 rounded-full px-4 py-2">
+                  <div className={`w-3 h-3 rounded-full ${dogCowMood === 'happy' ? 'bg-green-400' : dogCowMood === 'thinking' ? 'bg-yellow-400' : 'bg-blue-400'} animate-pulse`}></div>
+                  <span className="text-sm text-gray-300 capitalize font-medium">{dogCowMood}</span>
+                </div>
               </div>
             </div>
           </div>

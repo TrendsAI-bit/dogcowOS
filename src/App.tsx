@@ -37,98 +37,128 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="h-screen w-screen flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
-        {/* Animated background particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-white opacity-20 rounded-full"
-              animate={{
-                x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-                y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
-              }}
-              transition={{
-                duration: Math.random() * 15 + 10,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              style={{
-                left: Math.random() * window.innerWidth,
-                top: Math.random() * window.innerHeight,
-              }}
-            />
-          ))}
-        </div>
+      <div className="h-screen w-screen flex flex-col items-center justify-center bg-black relative overflow-hidden">
+        {/* Apple-style background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-black to-black"></div>
         
-        <div className="text-center text-white z-10">
-          {/* Logo Animation */}
+        {/* Main content container */}
+        <div className="flex flex-col items-center justify-center text-white z-10 space-y-8">
+          {/* Apple Logo Style - Clarus Logo */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ 
-              scale: [0, 1.2, 1],
-              opacity: 1,
-              y: [0, -10, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="mb-6"
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-8"
           >
-            <img 
-              src="/Logo.png" 
-              alt="Clarus the DogCow" 
-              className="w-32 h-32 mx-auto drop-shadow-2xl"
+            <img
+              src="/Logo.png"
+              alt="Clarus the DogCow"
+              className="w-20 h-20 mx-auto"
               style={{
-                filter: 'drop-shadow(0 0 30px rgba(255, 107, 53, 0.6))'
+                filter: 'brightness(1.2) drop-shadow(0 0 20px rgba(255, 107, 53, 0.3))'
               }}
             />
           </motion.div>
-          
-          {/* Text Animation */}
+
+          {/* Apple-style loading bar */}
           <motion.div
+            className="w-80 relative"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            {/* Loading bar background */}
+            <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-white rounded-full"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ 
+                  duration: 2.5, 
+                  ease: "easeInOut",
+                  times: [0, 0.3, 0.7, 1],
+                  values: ["0%", "30%", "70%", "100%"]
+                }}
+              />
+            </div>
+            
+            {/* Loading progress indicator dots */}
+            <div className="flex justify-center mt-4 space-x-1">
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-1 h-1 bg-gray-500 rounded-full"
+                  animate={{
+                    backgroundColor: ["#6b7280", "#ffffff", "#6b7280"],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    delay: i * 0.1,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Apple-style system text */}
+          <motion.div
+            className="text-center space-y-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-          >
-            <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
-              DogCow OS
-            </h1>
-            <motion.p 
-              className="text-xl opacity-80 mb-4"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Booting up Clarus...
-            </motion.p>
-          </motion.div>
-          
-          {/* Loading Bar */}
-          <motion.div
-            className="w-64 h-2 bg-white/20 rounded-full mx-auto overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
           >
+            <motion.p
+              className="text-sm text-gray-400 font-light tracking-wide"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Starting up DogCow OS...
+            </motion.p>
+            
+            {/* Boot sequence messages */}
             <motion.div
-              className="h-full bg-gradient-to-r from-orange-400 to-orange-600 rounded-full"
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
-            />
+              className="text-xs text-gray-500 font-mono space-y-1"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+            >
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0.7] }}
+                transition={{ delay: 1.5, duration: 0.5 }}
+              >
+                Initializing Clarus AI...
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0.7] }}
+                transition={{ delay: 2, duration: 0.5 }}
+              >
+                Loading system resources...
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0.7] }}
+                transition={{ delay: 2.5, duration: 0.5 }}
+              >
+                Preparing desktop environment...
+              </motion.p>
+            </motion.div>
           </motion.div>
-          
-          <motion.p 
-            className="text-sm opacity-60 mt-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-          >
-            Initializing AI companion...
-          </motion.p>
         </div>
+
+        {/* Bottom Apple copyright style */}
+        <motion.div
+          className="absolute bottom-8 text-center text-xs text-gray-600"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+        >
+          <p>DogCow OS • Powered by Clarus</p>
+        </motion.div>
       </div>
     )
   }

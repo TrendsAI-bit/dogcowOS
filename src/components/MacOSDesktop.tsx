@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import DogCowAvatar from './DogCowAvatar'
+import DogCowLogo from './DogCowLogo'
+import DogCow3D from './DogCow3D'
 
 interface MacOSDesktopProps {
   isDogCowActive: boolean
@@ -11,7 +13,7 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(true)
 
   return (
-    <div className="flex-1 relative overflow-hidden pt-7 pb-20">
+    <div className="flex-1 relative overflow-hidden pt-8 pb-24">
       {/* Welcome Message */}
       <AnimatePresence>
         {showWelcomeMessage && !isDogCowActive && (
@@ -26,15 +28,17 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
                 className="mb-8"
                 animate={{ 
                   y: [0, -10, 0],
-                  rotate: [0, 5, -5, 0]
+                  rotate: [0, 2, -2, 0]
                 }}
                 transition={{ 
-                  duration: 4, 
+                  duration: 6, 
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               >
-                <DogCowAvatar mood="happy" size="large" onClick={() => setIsDogCowActive(true)} />
+                <div className="w-48 h-48 cursor-pointer" onClick={() => setIsDogCowActive(true)}>
+                  <DogCow3D mood="happy" size="large" onClick={() => setIsDogCowActive(true)} autoRotate={true} />
+                </div>
               </motion.div>
               
               <motion.div
@@ -97,19 +101,22 @@ const MacOSDesktop: React.FC<MacOSDesktopProps> = ({ isDogCowActive, setIsDogCow
               animate={{ 
                 x: [0, 100, -100, 0],
                 y: [0, -50, 50, 0],
-                rotate: [0, 10, -10, 0]
+                rotate: [0, 5, -5, 0]
               }}
               transition={{ 
-                duration: 20, 
+                duration: 25, 
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
-              <DogCowAvatar 
-                mood="happy" 
-                size="medium" 
-                onClick={() => setIsDogCowActive(true)} 
-              />
+              <div className="w-32 h-32 cursor-pointer">
+                <DogCow3D 
+                  mood="happy" 
+                  size="medium" 
+                  onClick={() => setIsDogCowActive(true)}
+                  autoRotate={true}
+                />
+              </div>
             </motion.div>
 
             {/* Desktop Text */}

@@ -31,7 +31,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ currentTime, wallpaper, setWallpaper 
   ]
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-40 h-7 bg-black/20 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-4 text-white text-sm font-medium">
+    <div className="fixed top-0 left-0 right-0 z-40 h-8 bg-black/30 backdrop-blur-2xl border-b border-white/5 flex items-center justify-between px-4 text-white text-sm font-medium shadow-sm" style={{ background: 'rgba(0, 0, 0, 0.3)' }}>
       {/* Left side - Apple menu and app menus */}
       <div className="flex items-center space-x-6">
         <div className="relative">

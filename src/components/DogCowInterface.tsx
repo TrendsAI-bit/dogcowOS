@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { X, MessageCircle, Gamepad2, Settings, Volume2, VolumeX } from 'lucide-react'
 import DogCowAvatar from './DogCowAvatar'
+import DogCowLogo from './DogCowLogo'
+import DogCow3D from './DogCow3D'
 import ChatInterface from './ChatInterface'
 import GameInterface from './GameInterface'
 
@@ -113,7 +115,9 @@ const DogCowInterface: React.FC<DogCowInterfaceProps> = ({ onClose }) => {
         <div className="flex flex-1 overflow-hidden">
           {/* Left Panel - DogCow Avatar */}
           <div className="w-1/3 bg-gradient-to-b from-orange-500/20 to-orange-600/20 p-6 flex flex-col items-center justify-center">
-            <DogCowAvatar mood={dogCowMood} size="large" />
+            <div className="mb-4">
+              <DogCow3D mood={dogCowMood} size="large" onClick={() => playMoofSound()} />
+            </div>
             <div className="mt-4 text-center">
               <h3 className="text-white text-xl font-bold">Clarus</h3>
               <p className="text-gray-300 text-sm mt-1">Your AI DogCow Companion</p>

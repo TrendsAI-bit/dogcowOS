@@ -32,16 +32,16 @@ function App() {
     >
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white opacity-20 rounded-full"
+            className="absolute w-1 h-1 bg-white opacity-10 rounded-full"
             animate={{
               x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
               y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
             }}
             transition={{
-              duration: Math.random() * 20 + 10,
+              duration: Math.random() * 30 + 20,
               repeat: Infinity,
               ease: "linear"
             }}
